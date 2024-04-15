@@ -7,6 +7,22 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body onload="addDataToTable()">
+    <!-- Navbar -->
+    <!-- Navbar -->
+    <nav class="navbar">
+      <!-- Navbar logo -->
+      <div class="logo">
+        <a href="#">MyLogo</a>
+      </div>
+
+      <!-- Navbar links -->
+      <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
     <div class="container">
       <!-- Form -->
       <form class="form">
@@ -70,11 +86,21 @@
             <option value="UAE">UAE</option>
           </select>
           <div class="btnContainer">
-            <button class="submit-btn" onclick="onClickSubmit()" disabled type="button">Submit</button>
-            <button class="cancel-btn" onclick="onClickCancel()" type="button">Cancel</button>
+            <button
+              class="submit-btn"
+              onclick="onClickSubmit()"
+              disabled
+              type="button"
+            >
+              Submit
+            </button>
+            <button class="cancel-btn" onclick="onClickCancel()" type="button">
+              Cancel
+            </button>
           </div>
         </div>
       </form>
+      <hr />
       <!-- Table -->
       <div class="table">
         <h1 class="header-text">Contest Data</h1>
@@ -92,11 +118,11 @@
               <th>Action</th>
             </tr>
           </thead>
-          <tbody id="table-body">
-          </tbody>
+          <tbody id="table-body"></tbody>
         </table>
       </div>
     </div>
+    <hr />
     <script src="script.js"></script>
   </body>
 </html>
