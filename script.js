@@ -3,7 +3,6 @@ const ERROR_FULL_NAME_REQUIRED =
   "Full Name is required and should be at least 3 characters long.";
 const ERROR_INVALID_EMAIL = "Please enter a valid email address.";
 const ERROR_INVALID_PHONE = "Please enter a valid 10-digit phone number.";
-const ERROR_INVALID_DOB = "Please enter a valid date of birth (DD/MM/YYYY).";
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const dateRegex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/(19|20)\d\d$/;
 
@@ -16,21 +15,17 @@ let city = document.getElementById("city");
 let country = document.getElementById("country");
 let fullNameError = document.getElementsByClassName("fullname-error-msg");
 let emailError = document.getElementsByClassName("email-error-msg");
-let dobError = document.getElementsByClassName("dob-error-msg");
 let phoneError = document.getElementsByClassName("phone-error-msg");
 const form = document.getElementsByClassName("form");
 const submitBtn = document.getElementsByClassName("submit-btn");
-const genderRadios = document.getElementsByName("Gender");
 // Event Listeners
 
 fullName.addEventListener("blur", handleFullNameBlur);
 email.addEventListener("blur", handleEmailBlur);
-dob.addEventListener("blur", handleDobBlur);
 phone.addEventListener("blur", handlePhoneBlur);
 
 fullName.addEventListener("input", validateForm);
 email.addEventListener("input", validateForm);
-dob.addEventListener("input", validateForm);
 phone.addEventListener("input", validateForm);
 
 // Initial validation in case the form is pre-filled
@@ -41,7 +36,7 @@ let contestData = [
     fullName: "Satyam Tripathi",
     email: "satyam123@gmail.com",
     gender: "Male",
-    dob: "16/09/1998",
+    dob: "1998-11-21",
     phone: "0987654321",
     city: "Lucknow",
     country: "India",
@@ -50,7 +45,7 @@ let contestData = [
     fullName: "Alex",
     email: "alex123@gmail.com",
     gender: "Male",
-    dob: "13/01/1998",
+    dob: "1998-01-22",
     phone: "0927654321",
     city: "Paris",
     country: "USA",
@@ -60,15 +55,9 @@ let contestData = [
 function validateForm() {
   const isFullNameValid = fullName.value.trim().length >= 3;
   const isEmailValid = emailPattern.test(email.value.trim());
-  const isDobValid = dateRegex.test(dob.value.trim());
   const isPhoneValid = phone.value.trim().length === 10;
 
-  submitBtn[0].disabled = !(
-    isFullNameValid &&
-    isEmailValid &&
-    isPhoneValid &&
-    isDobValid
-  );
+  submitBtn[0].disabled = !(isFullNameValid && isEmailValid && isPhoneValid);
 }
 
 function handleFullNameBlur() {
@@ -87,14 +76,6 @@ function handleEmailBlur() {
   }
 }
 
-function handleDobBlur() {
-  if (!dateRegex.test(dob.value.trim())) {
-    dobError[0].textContent = ERROR_INVALID_DOB;
-  } else {
-    dobError[0].textContent = "";
-  }
-}
-
 function handlePhoneBlur() {
   if (phone.value.trim().length !== 10) {
     phoneError[0].textContent = ERROR_INVALID_PHONE;
@@ -105,6 +86,7 @@ function handlePhoneBlur() {
 
 // Function to get the selected gender
 function getSelectedGender() {
+  const genderRadios = document.getElementsByName("Gender");
   // Iterate through the radio buttons
   for (let i = 0; i < genderRadios.length; i++) {
     // Check if the current radio button is checked
@@ -193,7 +175,7 @@ function onClickSubmit() {
     fullName: fullName.value.trim(),
     email: email.value.trim(),
     gender: getSelectedGender() ? getSelectedGender() : "NA",
-    dob: dob.value.trim() ? dob.value.trim() : "NA",
+    dob: dob.value ? dob.value : "NA",
     phone: phone.value.trim(),
     city: city.value.trim() ? city.value.trim() : "NA",
     country: country.value,
@@ -207,7 +189,6 @@ function onClickSubmit() {
   } else if (
     fullName.value.trim().length >= 3 &&
     emailPattern.test(email.value.trim()) &&
-    dateRegex.test(dob.value.trim()) &&
     phone.value.trim().length === 10
   ) {
     contestData.push(personData);
@@ -222,22 +203,32 @@ function onClickSubmit() {
 function onClickCancel() {
   form[0].reset();
   validateForm();
+  fullNameError[0].textContent = "";
+  emailError[0].textContent = "";
+  phoneError[0].textContent = "";
 }
 
 function onDelete(entry) {
-  if (contestData.length === 1) {
-    contestData = [];
-  } else {
-    // Find the index of the object to delete using findIndex()
-    const indexToDelete = contestData.findIndex(
-      (person) => person.email === entry.email
-    );
-    // Check if the object was found
-    if (indexToDelete !== -1) {
-      contestData.splice(indexToDelete, 1);
+  // Display a browser alert asking the user to confirm the deletion
+  const confirmation = confirm(
+    "Are you sure you want to delete this context data?"
+  );
+
+  if (confirmation) {
+    if (contestData.length === 1) {
+      contestData = [];
+    } else {
+      // Find the index of the object to delete using findIndex()
+      const indexToDelete = contestData.findIndex(
+        (person) => person.email === entry.email
+      );
+      // Check if the object was found
+      if (indexToDelete !== -1) {
+        contestData.splice(indexToDelete, 1);
+      }
     }
+    addDataToTable(contestData);
   }
-  addDataToTable(contestData);
 }
 
 function onEdit(entry) {
@@ -246,9 +237,9 @@ function onEdit(entry) {
 
   fullName.value = entry.fullName;
   email.value = entry.email;
-  if (entry.gender === "male") {
+  if (entry.gender === "Male") {
     maleRadioButton.checked = true;
-  } else if (entry.gender === "female") {
+  } else if (entry.gender === "Female") {
     femaleRadioButton.checked = true;
   }
   dob.value = entry.dob;
