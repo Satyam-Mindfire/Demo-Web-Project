@@ -40,7 +40,7 @@ let contestData = [
   {
     fullName: "Satyam Tripathi",
     email: "satyam123@gmail.com",
-    gender: "male",
+    gender: "Male",
     dob: "16/09/1998",
     phone: "0987654321",
     city: "Lucknow",
@@ -49,7 +49,7 @@ let contestData = [
   {
     fullName: "Alex",
     email: "alex123@gmail.com",
-    gender: "male",
+    gender: "Male",
     dob: "13/01/1998",
     phone: "0927654321",
     city: "Paris",
@@ -192,8 +192,8 @@ function onClickSubmit() {
   const personData = {
     fullName: fullName.value.trim(),
     email: email.value.trim(),
-    dob: dob.value.trim() ? dob.value.trim() : "NA",
     gender: getSelectedGender() ? getSelectedGender() : "NA",
+    dob: dob.value.trim() ? dob.value.trim() : "NA",
     phone: phone.value.trim(),
     city: city.value.trim() ? city.value.trim() : "NA",
     country: country.value,
