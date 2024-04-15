@@ -1,0 +1,128 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  max-width: 100%;
+}
+
+.table {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow-x: auto;
+  max-width: 100%;
+}
+.header-text {
+  margin-top: 30px;
+  align-self: center;
+}
+
+.secondary-text {
+  margin-top: 5px;
+  align-self: center;
+}
+.inputFieldContainer {
+  display: flex;
+  flex-direction: column;
+  margin: 20px 20px 10px 20px;
+}
+
+.inputFieldLabel {
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.inputField {
+  padding: 5px 10px 5px 10px;
+}
+
+/* Apply the focus styles when the input field is hovered */
+.inputField:hover {
+  border-color: blue; /* Match the border color with the focus state */
+}
+
+.margin {
+  margin: 0px 25px 0px 5px;
+}
+
+button {
+  padding: 8px;
+  border-radius: 5px;
+}
+
+.btnContainer {
+  display: flex;
+  margin-top: 30px;
+  justify-content: space-around;
+}
+.error-msg {
+  color: red;
+}
+
+.required-asterisk {
+  color: red;
+}
+
+.submit-btn {
+  min-width: 45%;
+  align-self: center;
+  background-color: blue;
+  color: white;
+}
+
+.submit-btn:disabled {
+  min-width: 45%;
+  align-self: center;
+  background-color: grey;
+  color: white;
+}
+
+.cancel-btn {
+  min-width: 45%;
+  align-self: center;
+  background-color: white;
+  color: blue;
+}
+
+.icon-button {
+  padding: 0; /* Remove default padding */
+  border: none; /* Optionally remove the border */
+  background: none; /* Optionally remove the background */
+  display: inline-flex; /* Use inline-flex to align image and text, if present */
+  align-items: center; /* Center the icon vertically */
+  justify-content: center; /* Center the icon horizontally */
+  cursor: pointer; /* Make the button clickable */
+}
+.margin-left {
+  margin-left: 12px;
+}
+
+th,
+td {
+  border: 1px solid black;
+  padding: 10px;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 0px 10px 0px 10px;
+}

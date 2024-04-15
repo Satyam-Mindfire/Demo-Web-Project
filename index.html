@@ -1,11 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demo Learning Project</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body onload="addDataToTable()">
+    <div class="container">
+      <!-- Form -->
+      <form class="form">
+        <h1 class="header-text">Join Our Contest</h1>
+        <p class="secondary-text">
+          Fill out the form to participate in the contest
+        </p>
+        <div class="inputFieldContainer">
+          <!-- Full name Field -->
+          <label for="fullname" class="inputFieldLabel"
+            >Full Name <sup class="required-asterisk">*</sup>
+          </label>
+          <input id="fullname" class="inputField" />
+          <p class="fullname-error-msg error-msg"></p>
+          <br />
+
+          <!-- Email Field -->
+          <label for="email" class="inputFieldLabel"
+            >Email <sup class="required-asterisk">*</sup></label
+          >
+          <input id="email" class="inputField" />
+          <p class="email-error-msg error-msg"></p>
+          <br />
+
+          <!-- Gender -->
+          <label class="inputFieldLabel">Gender</label>
+          <span>
+            <input type="radio" value="male" name="Gender" id="Male" />
+            <label for="Male" class="margin">Male</label>
+            <input type="radio" value="female" name="Gender" id="Female" />
+            <label for="Female" class="margin">Female</label>
+          </span>
+          <br />
+
+          <!-- DOB Field -->
+          <label for="dob" class="inputFieldLabel"
+            >D.O.B("DD/MM/YYYY") <sup class="required-asterisk">*</sup></label
+          >
+          <input id="dob" class="inputField" />
+          <p class="dob-error-msg error-msg"></p>
+          <br />
+
+          <!-- Phone Field -->
+          <label for="phone" class="inputFieldLabel"
+            >Phone No. <sup class="required-asterisk">*</sup></label
+          >
+          <input id="phone" class="inputField" />
+          <p class="phone-error-msg error-msg"></p>
+          <br />
+
+          <!-- City Field -->
+          <label for="city" class="inputFieldLabel">City</label>
+          <input id="city" class="inputField" /><br />
+
+          <!-- Country -->
+          <label for="country" class="inputFieldLabel">Country</label>
+          <select id="country" class="inputField">
+            <option value="India">India</option>
+            <option value="USA">USA</option>
+            <option value="Singapore">Singapore</option>
+            <option value="UAE">UAE</option>
+          </select>
+          <div class="btnContainer">
+            <button class="submit-btn" onclick="onClickSubmit()" disabled type="button">Submit</button>
+            <button class="cancel-btn" onclick="onClickCancel()" type="button">Cancel</button>
+          </div>
+        </div>
+      </form>
+      <!-- Table -->
+      <div class="table">
+        <h1 class="header-text">Contest Data</h1>
+        <br /><br /><br />
+        <table>
+          <thead>
+            <tr>
+              <th>Full Name</th>
+              <th>Email</th>
+              <th>Gender</th>
+              <th>DOB</th>
+              <th>Phone No.</th>
+              <th>City</th>
+              <th>Country</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="table-body">
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
 </html>
