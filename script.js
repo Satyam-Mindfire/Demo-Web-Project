@@ -31,6 +31,7 @@ phone.addEventListener("input", validateForm);
 // Initial validation in case the form is pre-filled
 validateForm();
 
+// Initial contest data
 let contestData = [
   {
     fullName: "Satyam Tripathi",
@@ -52,6 +53,7 @@ let contestData = [
   },
 ];
 
+// Validate form on submit action
 function validateForm() {
   const isFullNameValid = fullName.value.trim().length >= 3;
   const isEmailValid = emailPattern.test(email.value.trim());
@@ -60,6 +62,7 @@ function validateForm() {
   submitBtn[0].disabled = !(isFullNameValid && isEmailValid && isPhoneValid);
 }
 
+// Handle Full Name Validation
 function handleFullNameBlur() {
   if (fullName.value.trim().length < 3) {
     fullNameError[0].textContent = ERROR_FULL_NAME_REQUIRED;
@@ -68,6 +71,7 @@ function handleFullNameBlur() {
   }
 }
 
+// Handle Email Validation
 function handleEmailBlur() {
   if (!emailPattern.test(email.value.trim())) {
     emailError[0].textContent = ERROR_INVALID_EMAIL;
@@ -76,6 +80,7 @@ function handleEmailBlur() {
   }
 }
 
+// Handle Phone Validation
 function handlePhoneBlur() {
   if (phone.value.trim().length !== 10) {
     phoneError[0].textContent = ERROR_INVALID_PHONE;
@@ -133,7 +138,7 @@ function addDataToTable() {
 
     // Add an image icon to the edit button
     const editIcon = document.createElement("img");
-    editIcon.src = "edit-button.png"; // Replace with the path to your edit icon image
+    editIcon.src = "Images/edit-button.png"; // Replace with the path to your edit icon image
     editIcon.alt = "Edit"; // Provide alt text for accessibility
     editIcon.width = 16; // Adjust the size of the icon as needed
     editIcon.height = 16;
@@ -149,7 +154,7 @@ function addDataToTable() {
 
     // Add an image icon to the delete button
     const deleteIcon = document.createElement("img");
-    deleteIcon.src = "delete.png"; // Replace with the path to your delete icon image
+    deleteIcon.src = "Images/delete.png"; // Replace with the path to your delete icon image
     deleteIcon.alt = "Delete"; // Provide alt text for accessibility
     deleteIcon.width = 16; // Adjust the size of the icon as needed
     deleteIcon.height = 16;
@@ -170,6 +175,7 @@ function addDataToTable() {
   });
 }
 
+// Handle the submit button click
 function onClickSubmit() {
   const personData = {
     fullName: fullName.value.trim(),
@@ -200,6 +206,7 @@ function onClickSubmit() {
   validateForm();
 }
 
+// Handle the cancel button click
 function onClickCancel() {
   form[0].reset();
   validateForm();
@@ -208,6 +215,7 @@ function onClickCancel() {
   phoneError[0].textContent = "";
 }
 
+// Handle the delete button click
 function onDelete(entry) {
   // Display a browser alert asking the user to confirm the deletion
   const confirmation = confirm(
@@ -231,6 +239,7 @@ function onDelete(entry) {
   }
 }
 
+// Handle the edit button click
 function onEdit(entry) {
   const maleRadioButton = document.getElementById("Male");
   const femaleRadioButton = document.getElementById("Female");
