@@ -199,7 +199,7 @@ function onClickSubmit() {
     country: country.value,
   };
   const index = contestData.findIndex(
-    (item) => (item.email === email.value.trim())
+    (item) => item.email === email.value.trim()
   );
 
   if (index !== -1) {
@@ -216,7 +216,7 @@ function onClickSubmit() {
   addDataToTable();
 
   form[0].reset();
-  validateForm;
+  validateForm();
 }
 
 function onClickCancel() {
@@ -234,7 +234,7 @@ function onDelete(entry) {
     );
     // Check if the object was found
     if (indexToDelete !== -1) {
-      contestData = contestData.splice(indexToDelete, 1);
+      contestData.splice(indexToDelete, 1);
     }
   }
   addDataToTable(contestData);
